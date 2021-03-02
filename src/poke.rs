@@ -33,9 +33,10 @@ impl Poke {
         // Unfortunately, it fetches description of all flavors of the species and not all of them
         // are great descriptions. Let me know I missed some API end point that'd be more
         // appropriate here.
+        let url = format!("https://pokeapi.co/api/v2/pokemon-species/{}/?language=en", name);
         let species = self
             .client
-            .get("https://pokeapi.co/api/v2/pokemon-species/2/?language=en")
+            .get(&url)
             .send()
             .await?
             .json::<Species>()

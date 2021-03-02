@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use reqwest::{Client, Result};
 
-struct Poke {
+pub struct Poke {
     client: Client,
 }
 

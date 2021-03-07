@@ -36,6 +36,20 @@ cargo run
 
 Pokeserv is now up and ready to server requests from all network interfaces.
 
+# Building a docker image
+
+A docker image can be built through the usual command:
+
+```
+docker build -t pokeserve .
+```
+
+And to run pokeserve after:
+
+```
+docker run -p 3000:3000 pokeserve
+```
+
 ## TODO
 
 * See if there is a better pokeapi.co endpoint to get the Pokemon description than the one we're
@@ -46,5 +60,8 @@ Pokeserv is now up and ready to server requests from all network interfaces.
   * API keys for the used services.
 
 * Add logging.
+
+* The Dockerfile is very basic and can be improved in many ways, for example speed of rebuilds and
+  image size.
 
 * Most importly: Rename to something better. Pokemonspear? :)

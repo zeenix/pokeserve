@@ -39,6 +39,7 @@ impl Poke {
             .get(&url)
             .send()
             .await?
+            .error_for_status()?
             .json::<Species>()
             .await?;
 

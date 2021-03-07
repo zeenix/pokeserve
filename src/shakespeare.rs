@@ -29,10 +29,8 @@ impl Shakepeare {
             .get("https://api.funtranslations.com/translate/shakespeare.json")
             .query(&[("text", text)])
             .send()
-            .await?;
-
-        // FIXME: Should be an error.
-        assert!(response.status().is_success());
+            .await?
+            .error_for_status()?;
 
         let translated = response.json::<Translation>().await?;
 

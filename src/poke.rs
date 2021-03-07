@@ -1,5 +1,6 @@
 use serde::Deserialize;
-use reqwest::{Client, Result};
+use reqwest::Client;
+use crate::error::Error;
 
 pub struct Poke {
     client: Client,
@@ -28,7 +29,7 @@ impl Poke {
         }
     }
 
-    pub async fn fetch_pokemon(&self, name: &str) -> Result<String> {
+    pub async fn fetch_pokemon(&self, name: &str) -> Result<String, Error> {
         // FIXME: This is the best API endpoint I could find that could fetch me the description.
         // Unfortunately, it fetches description of all flavors of the species and not all of them
         // are great descriptions. Let me know I missed some API end point that'd be more
@@ -49,8 +50,7 @@ impl Poke {
             }
         }
 
-        // FIXME: Need an error type
-        unreachable!();
+        Err(Error::MissingPokemon)
     }
 }
 

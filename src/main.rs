@@ -4,6 +4,7 @@ use hyper::{Body, Request, Response, Server, StatusCode};
 use hyper::service::{make_service_fn, service_fn};
 
 mod poke;
+mod shakespeare;
 
 async fn handle_request(req: Request<Body>) -> Result<Response<Body>, Infallible> {
     let response = Response::builder();
@@ -19,10 +20,12 @@ async fn handle_request(req: Request<Body>) -> Result<Response<Body>, Infallible
 
     // FIXME: Very inefficient to create the clients for each request.
     let desc = poke::Poke::new().fetch_pokemon(parts[2]).await.unwrap();
+    let desc = desc.replace("\n", " ");
+    let translated = shakespeare::Shakepeare::new().translate(&desc).await.unwrap();
 
     Ok(response
        .status(StatusCode::OK)
-       .body(desc.into()).unwrap())
+       .body(translated.into()).unwrap())
 }
 
 #[tokio::main]

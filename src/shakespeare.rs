@@ -23,7 +23,6 @@ impl Shakepeare {
     }
 
     pub async fn translate(&self, text: &str) -> Result<String> {
-        println!("text: {}", text);
         let response = self
             .client
             .get("https://api.funtranslations.com/translate/shakespeare.json")

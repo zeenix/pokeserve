@@ -25,7 +25,7 @@ impl Shakepeare {
     pub async fn translate(&self, text: &str) -> Result<String> {
         let response = self
             .client
-            .get("https://api.funtranslations.com/translate/shakespeare.json")
+            .get("http://api.funtranslations.com/translate/shakespeare.json")
             .query(&[("text", text)])
             .send()
             .await?

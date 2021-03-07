@@ -52,6 +52,9 @@ docker run -p 3000:3000 pokeserve
 
 ## TODO
 
+* Test case for the service itself. While we've tests for both services we use, we also need at
+  least one e2e test.
+
 * See if there is a better pokeapi.co endpoint to get the Pokemon description than the one we're
   using. See FIXME in `src/poke.rs` file.
 

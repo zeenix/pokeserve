@@ -63,6 +63,6 @@ mod tests {
         let rt = Runtime::new().unwrap();
         let poke = Poke::new();
 
-        assert!(rt.block_on(poke.fetch_pokemon("charizard")).is_ok());
+        rt.block_on(poke.fetch_pokemon("charizard")).unwrap();
     }
 }

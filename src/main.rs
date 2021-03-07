@@ -45,7 +45,7 @@ async fn handle_request(req: Request<Body>) -> Result<Response<Body>, Error> {
 
 #[tokio::main]
 async fn main() {
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
 
     let make_svc = make_service_fn(|_conn| async {
         Ok::<_, Error>(service_fn(handle_request))

@@ -12,7 +12,7 @@ Once the server is up, the API endpoint is available `http://HOSTNAME:3000/pokem
 For example here is an sample query sent from the same machine as the one Pokeserv is running on,
 along with their results:
 
-```sh
+```console
 $ curl http://localhost:3000/pokemon/charizard
 {"name":"charizard","description":"Spits fire yond is hot enow to melt boulders. Known to cause forest fires unintentionally."}
 $ curl http://localhost:3000/pokemon/butterfree

@@ -12,7 +12,7 @@ Once the server is up, the API endpoint is available `http://HOSTNAME:3000/pokem
 For example here is an sample query sent from the same machine as the one Pokeserv is running on,
 along with their results:
 
-```
+```sh
 $ curl http://localhost:3000/pokemon/charizard
 {"name":"charizard","description":"Spits fire yond is hot enow to melt boulders. Known to cause forest fires unintentionally."}
 $ curl http://localhost:3000/pokemon/butterfree
@@ -24,13 +24,13 @@ $ curl http://localhost:3000/pokemon/butterfree
 Pokeserv is written in Rust and as such it uses Cargo as its build system. To install the needed
 build tools, simply run the following in your terminal, then follow the onscreen instructions:
 
-```
+```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 After that, you can build and run Pokeserv with this command:
 
-```
+```sh
 cargo run
 ```
 
@@ -40,13 +40,13 @@ Pokeserv is now up and ready to server requests from all network interfaces.
 
 A docker image can be built through the usual command:
 
-```
+```sh
 docker build -t pokeserve .
 ```
 
 And to run pokeserve after:
 
-```
+```sh
 docker run -p 3000:3000 pokeserve
 ```
 

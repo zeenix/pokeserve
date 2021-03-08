@@ -1,10 +1,10 @@
 use std::net::SocketAddr;
 use hyper::{Body, Request, Response, Server, StatusCode};
 use hyper::service::{make_service_fn, service_fn};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::to_string;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, PartialEq, Serialize)]
 struct ShakepeareanPokemon {
     name: String,
     description: String,

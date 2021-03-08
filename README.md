@@ -62,6 +62,8 @@ docker run -p 3000:3000 pokeserve
   * Port and IP to host on.
   * API keys for the used services.
 
+* Use HTTPS instead of HTTP.
+
 * Add logging.
 
 * The Dockerfile is very basic and can be improved in many ways, for example speed of rebuilds and

@@ -68,3 +68,57 @@ async fn main() {
 
     run(rx).await
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use reqwest::Client;
+    use tokio::runtime::Runtime;
+
+    #[test]
+    fn e2e() {
+        let rt = Runtime::new().unwrap();
+
+        let (tx, rx) = oneshot::channel::<()>();
+
+        // Spawn the server
+        rt.spawn(run(rx));
+
+        rt.block_on(run_client());
+
+        // Time to shutdown the server
+        let _ = tx.send(());
+    }
+
+    async fn run_client() {
+        let client = Client::new();
+
+        let expected_pokemon: [ShakepeareanPokemon; 2] = [
+            ShakepeareanPokemon {
+                name: "charizard".to_string(),
+                description: "Spits fire yond is hot enow to melt boulders. Known to cause forest \
+                              fires unintentionally.".to_string(),
+            },
+            ShakepeareanPokemon {
+                name: "butterfree".to_string(),
+                description: "In hurlyburly,  't flaps its wings at high speed to release highly \
+                              toxic dust into the air.".to_string(),
+            },
+        ];
+
+        for expected in &expected_pokemon {
+            let url = format!("http://localhost:3000/pokemon/{}", expected.name);
+            let outcome = client
+                .get(&url)
+                .send()
+                .await
+                .unwrap()
+                .error_for_status()
+                .unwrap()
+                .json::<ShakepeareanPokemon>()
+                .await
+                .unwrap();
+            assert_eq!(outcome, *expected);
+        }
+    }
+}

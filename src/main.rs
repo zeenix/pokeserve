@@ -72,6 +72,7 @@ async fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
+
     use reqwest::Client;
     use tokio::runtime::Runtime;
 
